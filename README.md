@@ -1,3 +1,5 @@
+> 团队晶体实验的安装、单视频复现命令及结果：[中文复现指南](REPRODUCE_zh.md)。原作者说明保留如下。
+
 # [AAAI 2026] CountVid: Open-World Object Counting in Videos
 
 Niki Amini-Naieni & Andrew Zisserman
