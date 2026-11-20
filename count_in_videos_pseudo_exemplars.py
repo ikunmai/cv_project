@@ -17,6 +17,8 @@ import shutil
 
 import numpy as np
 import torch
+import matplotlib
+matplotlib.use("TkAgg")  # Enable timed preview windows in WSL.
 import matplotlib.pyplot as plt
 from PIL import Image
 import re
@@ -273,7 +275,8 @@ def build_model_and_transforms(args):
     build_func = MODULE_BUILD_FUNCS.get(args.modelname)
     model, _, _ = build_func(args)
 
-    checkpoint = torch.load(args.pretrain_model_path, map_location="cpu")["model"]
+    with torch.serialization.safe_globals([argparse.Namespace]):
+        checkpoint = torch.load(args.pretrain_model_path, map_location="cpu", weights_only=True)["model"]
     model.load_state_dict(checkpoint, strict=False)
 
     model.eval()
@@ -1117,8 +1120,9 @@ if args.save_countgd_video:
             (x0, y0), box_w, box_h, linewidth=2, edgecolor="cyan", facecolor="none")
             plt.gca().add_patch(rect)
         plt.axis("off")
-        plt.show()
         plt.savefig(args.output_dir + "/" + f_name)
+        plt.show(block=False)
+        plt.pause(0.5)  # Preview briefly, then close automatically.
         plt.close()
         image.close()
         output_frame_names.append(f_name)
@@ -1145,8 +1149,9 @@ if args.save_sam_indep_video:
         cmap = plt.get_cmap("rainbow")
         add_masks_single_image(np.array(image), masks, cmap)
         plt.axis("off")
-        plt.show()
         plt.savefig(args.output_dir + "/" + f_name)
+        plt.show(block=False)
+        plt.pause(0.5)  # Preview briefly, then close automatically.
         plt.close()
         image.close()
         output_frame_names.append(f_name)
@@ -1170,8 +1175,9 @@ if args.save_final_video:
         f_name = "final-output-frame-" + str(frame_id) + ".png"
         cmap = plt.get_cmap("rainbow")
         add_masks(frame_id, T, cmap, np.array(image))
-        plt.show()
         plt.savefig(args.output_dir + "/" + f_name)
+        plt.show(block=False)
+        plt.pause(0.5)  # Preview briefly, then close automatically.
         plt.close()
         image.close()
         output_frame_names.append(f_name)

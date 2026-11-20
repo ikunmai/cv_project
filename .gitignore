@@ -1,0 +1,31 @@
+# Local datasets and pretrained weights
+/VideoCount/
+/checkpoints/
+/demo/
+*.pth
+*.pt
+*.ckpt
+*.safetensors
+# Generated experiment artifacts and temporary frames
+/results/
+/demo_output*/
+/demo_temp*/
+/crystals_temp_dir/
+/crystals-*-predicted.json
+/crystals-*.log
+/combined.png
+/T.json
+# Python and local compilation artifacts
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+build/
+dist/
+*.bak
+# Local credentials and environments
+.env
+.env.*
+!.env.example
+.venv/
+venv/
