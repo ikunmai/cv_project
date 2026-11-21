@@ -293,3 +293,7 @@ README 中说明 CountGD++ 论文的晶体伪示例实验使用 SAM 2，本仓�
 上传源码、说明、依赖文件。模型、VideoCount 数据、临时目录、原始运行日志和结果目录由 .gitignore 排除。需要分享结果时可以把不含敏感信息的汇总表写进说明；不要上传访问 Token 或本机凭据。
 
 更新文档时只暂存明确需要的文件，避免把上游已经跟踪的本机构建产物一起提交；.gitignore 不会自动排除已经被 Git 跟踪的文件。
+
+## 13. 性能改进（v2）
+
+第 1–12 节记录的是原算法基线。团队在它之上的改进方案、验证方式与在 GPU 上测量真实提升的步骤见 [IMPROVEMENTS_zh.md](IMPROVEMENTS_zh.md)：新增 `counting_rules.py`、`counting_cache.py`、`count_in_videos_pseudo_exemplars_v2.py`、`replay_crystals.py`、`run_crystals_v2.py`，原有脚本与上面记录的结果不受影响，原基线仍可用 `--profile baseline` 复现。

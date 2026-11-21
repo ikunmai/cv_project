@@ -15,6 +15,9 @@
 /crystals-*.log
 /combined.png
 /T.json
+# v2 caches of stage-1/2 outputs
+/caches/
+*.log
 # Python and local compilation artifacts
 __pycache__/
 *.py[cod]
